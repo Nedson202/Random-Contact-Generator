@@ -2,7 +2,7 @@ import '@babel/polyfill';
 import fs from 'fs';
 import chai from 'chai';
 import request from 'supertest';
-import app from '../../index';
+import app from '../index';
 import {
   defaultRoute, getMinMaxMessage, generatedNumbersPath, fileEncoding,
   descendingOrder, ascendingOrder
@@ -49,7 +49,7 @@ describe('PhoneNumber generator API Integration Tests', () => {
       .get(`${defaultRoute}/order-contacts?order=${descendingOrder}`)
       .end((err, res) => { /* eslint-disable-line */
         if (err) done(err);
-        const filePath = `generatedFile/${descendingOrder}.txt`;
+        const filePath = `src/generatedFiles/${descendingOrder}.txt`;
         const sortedContacts = fs.readFileSync(filePath, fileEncoding);
         expect(res.text).to.equal(sortedContacts);
         done();
@@ -61,7 +61,7 @@ describe('PhoneNumber generator API Integration Tests', () => {
       .get(`${defaultRoute}/order-contacts?order=${ascendingOrder}`)
       .end((err, res) => { /* eslint-disable-line */
         if (err) done(err);
-        const filePath = `generatedFile/${ascendingOrder}.txt`;
+        const filePath = `src/generatedFiles/${ascendingOrder}.txt`;
         const sortedContacts = fs.readFileSync(filePath, fileEncoding);
         expect(res.text).to.equal(sortedContacts);
         done();
