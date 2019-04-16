@@ -21,7 +21,7 @@ class PhoneNumberGenerator {
       readStream.pipe(res);
       res.setHeader('Content-disposition', 'attachment; filename=All-contacts');
       res.setHeader('Content-Type', 'application/force-download');
-      return res.sendFile(__dirname, generatedNumbersPath);
+      return;
     } catch (error) { /* istanbul ignore next */
       next(error);
     }
@@ -65,16 +65,16 @@ class PhoneNumberGenerator {
     try {
       const { order } = req.query;
       const allContacts = await readFile();
-      const filePath = `generatedFile/${order}.txt`;
+      const filePath = `src/generatedFiles/${order}.txt`;
 
       const data = sortPhoneNumbers(allContacts, order);
       await fs.writeFileSync(filePath, JSON.stringify(data));
 
       const readStream = fs.createReadStream(filePath);
-      readStream.pipe(res);
-      res.setHeader('Content-disposition', `attachment; filename=Contacts-${order}`);
+      JSON.parse(readStream).pipe(res);
+      res.setHeader('Content-disposition', `attachment; filename=Contacts-in-${order}-order`);
       res.setHeader('Content-Type', 'application/force-download');
-      return res.sendFile(__dirname, filePath);
+      return;
     } catch (error) { /* istanbul ignore next */
       next(error);
     }

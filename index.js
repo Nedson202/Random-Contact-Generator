@@ -1,10 +1,10 @@
 import express from 'express';
 import debug from 'debug';
-import routes from './routes';
+import routes from './src/routes';
 import {
   appUrl, sigterm, uncaughtException, port,
   exitZero, logType
-} from './utils';
+} from './src/utils';
 
 const app = express();
 const logger = debug(logType);

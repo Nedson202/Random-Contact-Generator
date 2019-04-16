@@ -2,7 +2,7 @@ import '@babel/polyfill';
 import fs from 'fs';
 import chai from 'chai';
 import request from 'supertest';
-import app from '../index';
+import app from '../../index';
 import {
   defaultRoute, getMinMaxMessage, generatedNumbersPath, fileEncoding,
   descendingOrder, ascendingOrder
