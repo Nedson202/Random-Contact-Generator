@@ -1,9 +1,10 @@
 import express from 'express';
+import fs from 'fs';
 import debug from 'debug';
 import routes from './routes';
 import {
   appUrl, sigterm, uncaughtException, port,
-  exitZero, logType
+  exitZero, logType, generatedFilesDirectory
 } from './utils';
 
 const app = express();
@@ -27,6 +28,10 @@ process.on(uncaughtException, () => {
 process.on(sigterm, () => {
   process.exit(exitZero);
 });
+
+if (!fs.existsSync(generatedFilesDirectory)) {
+  fs.mkdirSync(generatedFilesDirectory);
+}
 
 export default app;
 

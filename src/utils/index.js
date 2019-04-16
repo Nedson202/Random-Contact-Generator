@@ -1,6 +1,7 @@
 export { default as errorHandler } from '../middleware/defaultErrorHandler';
 
 export const generatedNumbersPath = 'src/generatedFiles/phoneNumbers.txt';
+export const generatedFilesDirectory = 'src/generatedFiles';
 export const attachmentName = 'phoneNumbers.txt';
 export const lengthOfNumbers = 10000;
 export const minimumSize = 100000000;
