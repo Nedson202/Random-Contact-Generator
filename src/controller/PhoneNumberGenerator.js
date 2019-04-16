@@ -20,7 +20,6 @@ class PhoneNumberGenerator {
       const readStream = fs.createReadStream(generatedNumbersPath);
       readStream.pipe(res);
       res.setHeader('Content-disposition', 'attachment; filename=All-contacts');
-      res.setHeader('Content-Type', 'application/force-download');
       return;
     } catch (error) { /* istanbul ignore next */
       next(error);
@@ -30,6 +29,13 @@ class PhoneNumberGenerator {
   static async validateFilesForDuplicates(_, res, next) {
     try {
       const parsedFile = await readFile();
+
+      if (!parsedFile) {
+        return res.status(404).json({
+          error: true,
+          message: 'No contact generated yet',
+        });
+      }
       const removeDuplicates = [...new Set(parsedFile)];
 
       if (removeDuplicates.length === parsedFile.length) {
@@ -48,6 +54,14 @@ class PhoneNumberGenerator {
       const allContacts = await readFile();
       const maximumValue = Math.max(...allContacts);
       const minimumValue = Math.min(...allContacts);
+
+      if (!maximumValue && !minimumValue) {
+        return res.status(404).json({
+          error: true,
+          message: 'No contact generated yet',
+        });
+      }
+
       return res.status(200).json({
         error: false,
         message: 'Maximum and minimum generated number retrieved successfully',
@@ -73,7 +87,6 @@ class PhoneNumberGenerator {
       const readStream = fs.createReadStream(filePath);
       readStream.pipe(res);
       res.setHeader('Content-disposition', `attachment; filename=Contacts-in-${order}-order`);
-      res.setHeader('Content-Type', 'application/force-download');
       return;
     } catch (error) { /* istanbul ignore next */
       next(error);

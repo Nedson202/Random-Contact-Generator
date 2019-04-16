@@ -13,6 +13,7 @@ $ cd Random-Contact-Generator
 $ yarn
 $ yarn start:dev               # Start the development environment
 $ yarn start                   # Run the production build
+$ yarn test                    # Run tests
 ```
 You can access the API via http://localhost:4000/api/v1/
 
