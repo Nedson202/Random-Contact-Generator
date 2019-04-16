@@ -71,7 +71,7 @@ class PhoneNumberGenerator {
       await fs.writeFileSync(filePath, JSON.stringify(data));
 
       const readStream = fs.createReadStream(filePath);
-      JSON.parse(readStream).pipe(res);
+      readStream.pipe(res);
       res.setHeader('Content-disposition', `attachment; filename=Contacts-in-${order}-order`);
       res.setHeader('Content-Type', 'application/force-download');
       return;
