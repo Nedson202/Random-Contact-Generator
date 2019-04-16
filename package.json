@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index",
+    "start": "DEBUG=log babel-node src/index",
     "start:dev": "DEBUG=log nodemon --exec babel-node src/index",
     "test": "nyc --reporter=html --reporter=text mocha --timeout 20000 --require babel-core/register src/test/* --exit"
   },
@@ -26,6 +26,7 @@
     ]
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "chai": "^4.2.0",
     "mocha": "^6.1.3",
     "supertest": "^4.0.2"
