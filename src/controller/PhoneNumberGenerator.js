@@ -42,6 +42,7 @@ class PhoneNumberGenerator {
         return res.status(200).json({
           error: false,
           message: `File starting with ${parsedFile[0]} contains no duplicate`,
+          totalRecordsGenerated: lengthOfNumbers
         });
       }
     } catch (error) { /* istanbul ignore next */
