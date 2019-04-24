@@ -1,6 +1,9 @@
 # Random-Contact-Generator
 The Random phone number generator generates a list of unique 10,000 contacts. This generated list can optionally be sorted in ascending or descending order, and also validated for duplicates.
 
+# Hosted API
+https://qrandom-phone-generator.herokuapp.com/api/v1
+
 # Requirements
 * Node.js v10.x or higher
 * yarn
